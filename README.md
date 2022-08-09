@@ -30,5 +30,5 @@ python3 manage.py runserver
 
 
 http://127.0.0.1:8000 - home page 
-http://127.0.0.1:8000/<id>  -  check the detail post
+http://127.0.0.1:8000/1  -  check the detail post with id
 http://127.0.0.1:8000/create_post/  -  create new post 
