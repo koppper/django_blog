@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+
+{% block title %}
+    Create post
+{% endblock %}
+
+
+{% block content %}
+    <h1>Add Post</h1>
+    <form action="{% url 'create_post' %}" method="post">
+        {% csrf_token %}
+        {{ form.media }}
+        {{ form.as_p }}
+        <br>
+        <button type="submit" class="btn btn-primary btn-block">Добавить пост</button>
+    </form>
+
+{% endblock %}

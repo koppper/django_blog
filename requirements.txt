@@ -1,0 +1,5 @@
+Django~=3.2.5
+pip~=22.0.3
+utils~=1.0.1
+Pillow==9.2.0
+django-quill-editor==0.1.40

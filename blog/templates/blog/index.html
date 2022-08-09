@@ -1,0 +1,72 @@
+{% extends 'base.html' %}
+
+{% block title %}
+    {{ title }}
+{% endblock %}
+{% block content %}
+            <div class="row">
+  <div class="col-sm-6">
+    {% if post %}
+        {% for item in post %}
+<div class="card mb-3" style="max-width: 540px;">
+  <div class="row g-0">
+    <div class="col-md-4">
+        {% if item.image %}
+      <img src="{{ item.image.url }}" class="img-fluid rounded-start" alt="...">
+        {% else %}
+            <img src="https://adukar.com/images/photo/psycho-sorry-word-in-programming-code-picjumbo-com.jpg" alt="" class="img-fluid rounded-start">
+        {% endif %}
+    </div>
+    <div class="col-md-8">
+      <div class="card-body">
+        <h5 class="card-title">{{ item.name }}</h5>
+        <p class="card-text">{{ item.content.html|safe }}</p>
+        <p class="card-text"><small class="text-muted">{{ item.author }}</small></p>
+          <ul class="list-group list-group-flush">
+              <li class="list-group-item">{{ item.category }}</li>
+              <li class="list-group-item">{{ item.created_at }}</li>
+              <li class="list-group-item">Просмотров: {{ item.views }}</li>
+          </ul>
+      </div>
+    </div>
+  </div>
+</div>
+        {% endfor %}
+    {% else %}
+        {{ "Нет публикации "}}
+    {% endif %}
+      </div>
+            </div>
+
+                {% if page_obj.has_other_pages %}
+                <nav aria-label="...">
+<ul class="pagination">
+                  {% if page_obj.has_previous %}
+                      <li class="page-item">
+                          <a class="page-link" href="?page={{ page_obj.previous_page_number }}" tabindex="-1">...</a>
+                      </li>
+                  {% endif %}
+
+                  {% for p in page_obj.paginator.page_range %}
+
+                      {% if page_obj.number == p %}
+
+                          <li class="page-item active" aria-current="page">
+                              <a class="page-link" href="?page={{ p }}">{{ p }}
+                              <span class="sr-only"></span>
+                              </a>
+                          </li>
+                      {% elif p > page_obj.number|add:-3 and p < page_obj.number|add:3 %}
+                          <li class="page-item">
+                              <a class="page-link" href="?page={{ p }}">{{ p }}</a>
+                          </li>
+                      {% endif %}
+                  {% endfor %}
+              {% if page_obj.has_next %}
+                  <li class="page-item">
+                      <a class="page-link" href="?page={{ page_obj.next_page_number }}">...</a>
+                  </li>
+              {% endif %}
+              </ul>
+    {% endif %}
+{% endblock %}
